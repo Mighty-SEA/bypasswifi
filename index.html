@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>GitHub Proxy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bypass WiFi Proxy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 10px;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .online { background: #d4edda; color: #155724; }
+        .offline { background: #f8d7da; color: #721c24; }
+        .code {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
 </head>
 <body>
-    <h1>GitHub Pages Proxy</h1>
-    <p>Running...</p>
+    <div class="container">
+        <h1>🚀 Bypass WiFi Proxy</h1>
+        <p>GitHub Pages proxy untuk bypass WiFi voucher</p>
+        
+        <div class="status online">
+            ✅ <strong>Status:</strong> Online
+        </div>
+        
+        <h2>📡 Proxy Endpoint:</h2>
+        <div class="code">
+            https://mighty-sea.github.io/bypasswifi/proxy/
+        </div>
+        
+        <h2>📱 HTTP Custom Config:</h2>
+        <div class="code">
+vmess-github = vmess, mighty-sea.github.io, 443, 
+username=4c4ff64d-8ce5-4783-84bd-8098ceb826ce, 
+ws=true, ws-path=/bypasswifi/proxy/vmess, 
+ws-headers=host:yuz.rmht.my.id, 
+over-tls=true, sni=mighty-sea.github.io
+        </div>
+        
+        <h2>🔧 Test Connection:</h2>
+        <button onclick="testConnection()">Test Proxy</button>
+        <div id="testResult"></div>
+    </div>
+    
+    <script>
+        async function testConnection() {
+            const result = document.getElementById('testResult');
+            result.innerHTML = '<p>Testing connection...</p>';
+            
+            try {
+                const response = await fetch('/bypasswifi/proxy/test');
+                if (response.ok) {
+                    result.innerHTML = '<div class="status online">✅ Proxy working!</div>';
+                } else {
+                    result.innerHTML = '<div class="status offline">❌ Proxy error</div>';
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="status offline">❌ Connection failed: ${error.message}</div>`;
+            }
+        }
+    </script>
 </body>
 </html>
