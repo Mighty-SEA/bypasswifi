@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proxy Redirection</title>
+    <script>
+        // Redirect semua traffic ke worker
+        const workerUrl = 'https://vmess-proxy.hibban-habiburrahman-sea.workers.dev';
+        const currentPath = window.location.pathname;
+        
+        if (currentPath.includes('/proxy/')) {
+            const targetPath = currentPath.replace('/proxy/', '/');
+            window.location.href = workerUrl + targetPath;
+        }
+    </script>
+</head>
+<body>
+    <h1>GitHub Pages Proxy</h1>
+    <p>Redirecting to worker...</p>
+</body>
+</html>
