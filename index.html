@@ -1,89 +1,31 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bypass WiFi Proxy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #007acc;
-            padding-bottom: 10px;
-        }
-        .status {
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        .online { background: #d4edda; color: #155724; }
-        .offline { background: #f8d7da; color: #721c24; }
-        .code {
-            background: #272822;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🚀 Bypass WiFi Proxy</h1>
-        <p>GitHub Pages proxy untuk bypass WiFi voucher</p>
-        
-        <div class="status online">
-            ✅ <strong>Status:</strong> Online
-        </div>
-        
-        <h2>📡 Proxy Endpoint:</h2>
-        <div class="code">
-            https://mighty-sea.github.io/bypasswifi/proxy/
-        </div>
-        
-        <h2>📱 HTTP Custom Config:</h2>
-        <div class="code">
-vmess-github = vmess, mighty-sea.github.io, 443, 
-username=4c4ff64d-8ce5-4783-84bd-8098ceb826ce, 
-ws=true, ws-path=/bypasswifi/proxy/vmess, 
-ws-headers=host:yuz.rmht.my.id, 
-over-tls=true, sni=mighty-sea.github.io
-        </div>
-        
-        <h2>🔧 Test Connection:</h2>
-        <button onclick="testConnection()">Test Proxy</button>
-        <div id="testResult"></div>
-    </div>
-    
+    <title>Proxy Gateway</title>
     <script>
-        async function testConnection() {
-            const result = document.getElementById('testResult');
-            result.innerHTML = '<p>Testing connection...</p>';
+        // WebSocket proxy ke VPS
+        function connectToVPS() {
+            // WebSocket ke VPS via GitHub Pages Service Worker
+            const ws = new WebSocket('wss://your-username.github.io/proxy-ws');
             
-            try {
-                const response = await fetch('/bypasswifi/proxy/test');
-                if (response.ok) {
-                    result.innerHTML = '<div class="status online">✅ Proxy working!</div>';
-                } else {
-                    result.innerHTML = '<div class="status offline">❌ Proxy error</div>';
-                }
-            } catch (error) {
-                result.innerHTML = `<div class="status offline">❌ Connection failed: ${error.message}</div>`;
-            }
+            ws.onopen = () => {
+                console.log('Connected to VPS via GitHub Pages');
+                // Sekarang bisa tunneling
+            };
+        }
+        
+        // Atau pakai fetch API
+        async function fetchViaProxy(url) {
+            const response = await fetch('/proxy', {
+                method: 'POST',
+                headers: {'X-Target-Url': url}
+            });
+            return response.text();
         }
     </script>
+</head>
+<body>
+    <h1>Proxy via GitHub Pages</h1>
+    <button onclick="connectToVPS()">Connect to VPS</button>
 </body>
 </html>
